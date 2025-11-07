@@ -1,0 +1,73 @@
+# C/C++ build outputs
+*.obj
+*.o
+*.lo
+*.la
+*.al
+*.libs
+*.a
+*.lib
+*.dll
+*.so
+*.dylib
+*.exe
+*.exp
+*.pdb
+*.ilk
+*.map
+*.manifest
+*.res
+*.idb
+*.ipdb
+*.iobj
+*.rsp
+*.tlog/
+
+# Precompiled headers
+*.pch
+
+# Visual Studio build dirs
+Debug/
+Release/
+RelWithDebInfo/
+MinSizeRel/
+/x64/
+/x86/
+/ARM/
+/ARM64/
+
+# CMake build dirs and files
+/build/
+/build*/
+/cmake-build-*/
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+CTestTestfile.cmake
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+Makefile
+
+# VS IDE state
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.VC.db
+*.VC.opendb
+*.vcxproj.user
+*.opendb
+
+# VS intermediate
+*.log
+*.lastbuildstate
+*.cachefile
+*.tli
+*.tlh
+*.tmp
+
+# Editor/OS noise
+.vscode/
+.DS_Store
+Thumbs.db
