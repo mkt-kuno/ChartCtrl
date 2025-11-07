@@ -43,6 +43,53 @@
 
 > **重要**: コントロールは内部で動的キャストを使用しているため、RTTIが有効になっている必要があります。VC6ではデフォルトで無効になっているため、プロジェクト設定で有効にしてください（プロジェクト設定 → "C/C++" タブ → "C++ language" カテゴリ → "Enable Run-Time Type Information (RTTI)" をチェック）。
 
+## ビルド方法（CMake）
+
+このプロジェクトはCMakeを使用してビルドできます。
+
+### 必要なもの
+
+- CMake 3.15以降
+- Visual Studio 2015以降（MFCサポート付き）
+
+### ビルド手順
+
+```powershell
+# ビルドディレクトリを作成
+mkdir build
+cd build
+
+# CMakeで構成（Visual Studio 2022の場合）
+cmake .. -G "Visual Studio 17 2022" -A x64
+
+# ビルド実行
+cmake --build . --config Release
+
+# または Debug ビルド
+cmake --build . --config Debug
+```
+
+ビルドが成功すると、`build/lib` ディレクトリに `ChartCtrl.lib`（Releaseビルド）または `ChartCtrld.lib`（Debugビルド）が生成されます。
+
+### 他のプロジェクトから使用する方法
+
+CMakeを使用しているプロジェクトから、以下のように使用できます：
+
+```cmake
+# ChartCtrlをサブモジュールとして追加している場合
+add_subdirectory(submodule/chartctrl)
+
+# あなたのプロジェクトにリンク
+target_link_libraries(YourProject PRIVATE ChartCtrl)
+```
+
+### Visual Studioから直接使用する場合
+
+1. `build/ChartCtrl.sln` を開く
+2. ビルド構成（Debug/Release）を選択
+3. ソリューションをビルド
+4. 生成された `.lib` ファイルと `include` ディレクトリを自分のプロジェクトに追加
+
 ## 使用方法
 
 ### 手動で挿入する場合
