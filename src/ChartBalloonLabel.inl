@@ -42,58 +42,58 @@ template<class PointType>
 void CChartBalloonLabel<PointType>::SetBackgroundColor(COLORREF colBackground)  
 { 
 	m_colBackground = colBackground; 
-	m_pParentCtrl->RefreshCtrl();
+	this->m_pParentCtrl->RefreshCtrl();
 }
 
 template<class PointType>
 void CChartBalloonLabel<PointType>::SetLineColor(COLORREF colArrow)			 
 { 
 	m_colLine = colArrow; 
-	m_pParentCtrl->RefreshCtrl();
+	this->m_pParentCtrl->RefreshCtrl();
 }
 
 template<class PointType>
 void CChartBalloonLabel<PointType>::SetBorderColor(COLORREF colBorder)			 
 { 
 	m_colBorder = colBorder; 
-	m_pParentCtrl->RefreshCtrl();
+	this->m_pParentCtrl->RefreshCtrl();
 }
 
 template<class PointType>
 void CChartBalloonLabel<PointType>::SetRoundedRect(bool bRounded)  
 { 
 	m_bRoundedRect = bRounded; 
-	m_pParentCtrl->RefreshCtrl();
+	this->m_pParentCtrl->RefreshCtrl();
 }
 
 template<class PointType>
 void CChartBalloonLabel<PointType>::SetFont(int nPointSize, const TChartString& strFaceName)
 {
 	m_Font.SetFont(strFaceName, nPointSize);
-	if (m_pParentCtrl)
-		m_pParentCtrl->RefreshCtrl();
+	if (this->m_pParentCtrl)
+		this->m_pParentCtrl->RefreshCtrl();
 }
 
 template<class PointType>
 void CChartBalloonLabel<PointType>::SetFont(const CChartFont& newFont)
 {
 	m_Font = newFont;
-	if (m_pParentCtrl)
-		m_pParentCtrl->RefreshCtrl();
+	if (this->m_pParentCtrl)
+		this->m_pParentCtrl->RefreshCtrl();
 }
 
 template<class PointType>
 void CChartBalloonLabel<PointType>::Draw(CDC* pDC, unsigned uPointIndex)
 {
-	if (m_pLabelProvider)
+	if (this->m_pLabelProvider)
 	{
-		PointType Point = m_pParentSeries->GetPoint(uPointIndex);
-		m_strLabelText = m_pLabelProvider->GetText(m_pParentSeries, uPointIndex);
+		PointType Point = this->m_pParentSeries->GetPoint(uPointIndex);
+		this->m_strLabelText = this->m_pLabelProvider->GetText(this->m_pParentSeries, uPointIndex);
 	}
-	if (m_strLabelText == _T(""))
+	if (this->m_strLabelText == _T(""))
 		return;
 
-	CPoint screenPt = m_pParentSeries->GetPointScreenCoord(uPointIndex);
+	CPoint screenPt = this->m_pParentSeries->GetPointScreenCoord(uPointIndex);
 
 	// Create the pen for the arrow
 	CPen newPen(PS_SOLID, 1, m_colLine);
@@ -107,14 +107,14 @@ void CChartBalloonLabel<PointType>::Draw(CDC* pDC, unsigned uPointIndex)
 	newPen.DeleteObject();
 	newPen.CreatePen(PS_SOLID, 1, m_colBorder);
 	pDC->SelectObject(&newPen);
-	m_Font.SelectFont(pDC);
+	this->m_Font.SelectFont(pDC);
 
 	// Create the brush to fill the rectangle
 	CBrush newBrush(m_colBackground);
 	CBrush* pOldBrush = pDC->SelectObject(&newBrush);
 
 	// Calculate the size of the 
-	CSize labelSize = pDC->GetTextExtent(m_strLabelText.c_str());
+	CSize labelSize = pDC->GetTextExtent(this->m_strLabelText.c_str());
 	labelSize += CSize(10,10);
 	int x = screenPt.x;
 	int y = screenPt.y;
@@ -127,12 +127,12 @@ void CChartBalloonLabel<PointType>::Draw(CDC* pDC, unsigned uPointIndex)
 		pDC->Rectangle(labelRect);
 
 	// Draw the text
-	pDC->TextOut(labelRect.left+5,labelRect.top+5,m_strLabelText.c_str());
+	pDC->TextOut(labelRect.left+5,labelRect.top+5,this->m_strLabelText.c_str());
 
 	// Clean the objects
 	pDC->SelectObject(pOldPen);
 	pDC->SelectObject(pOldBrush);
 	newPen.DeleteObject();
 	newBrush.DeleteObject();
-	m_Font.UnselectFont(pDC);
+	this->m_Font.UnselectFont(pDC);
 }

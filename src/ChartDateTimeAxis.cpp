@@ -141,7 +141,7 @@ bool CChartDateTimeAxis::GetNextTickValue(double dCurrentTick, double& dNextTick
 TChartString CChartDateTimeAxis::GetTickLabel(double TickValue) const
 {
 	COleDateTime tickTime((DATE)TickValue);
-	TChartString strLabel = tickTime.Format(m_strDTTickFormat.c_str());
+	TChartString strLabel = (LPCTSTR)tickTime.Format(m_strDTTickFormat.c_str());
 	return strLabel;
 }
 

@@ -42,7 +42,7 @@ CChartSerieBase<T>::CChartSerieBase(CChartCtrl* pParent) : CChartSerie(pParent)
 template<class T>
 CChartSerieBase<T>::~CChartSerieBase()
 {
-	TLabelMap::iterator iter = m_mapLabels.begin();
+	typename TLabelMap::iterator iter = m_mapLabels.begin();
 	for (iter; iter!=m_mapLabels.end(); iter++)
 	{
 		delete iter->second;
@@ -98,7 +98,7 @@ void CChartSerieBase<T>::RemovePointsFromBegin(unsigned Count)
 	// Remove all the labels associated with those points
 	for (unsigned i=0; i<=Count; i++)
 	{
-		TLabelMap::iterator iter = m_mapLabels.find(i);
+	typename TLabelMap::iterator iter = m_mapLabels.find(i);
 		if (iter != m_mapLabels.end()) 
 		{
 			delete iter->second;
@@ -119,7 +119,7 @@ void CChartSerieBase<T>::RemovePointsFromEnd(unsigned Count)
 	unsigned uStart = uPtsCount - Count;
 	for (unsigned i=0; i<=Count; i++)
 	{
-		TLabelMap::iterator iter = m_mapLabels.find(uStart + i);
+	typename TLabelMap::iterator iter = m_mapLabels.find(uStart + i);
 		if (iter != m_mapLabels.end()) 
 		{
 			delete iter->second;
@@ -134,7 +134,7 @@ template<class T>
 void CChartSerieBase<T>::ClearSerie()
 {
 	m_vPoints.Clear();
-	TLabelMap::iterator iter = m_mapLabels.begin();
+	typename TLabelMap::iterator iter = m_mapLabels.begin();
 	for (iter; iter!=m_mapLabels.end(); iter++)
 	{
 		delete iter->second;
@@ -292,7 +292,7 @@ void CChartSerieBase<T>::AttachCustomLabel(unsigned uPointIndex, CChartLabel<T>*
 {
 	ASSERT(uPointIndex<GetPointsCount());
 
-	TLabelMap::iterator iter = m_mapLabels.find(uPointIndex);
+	typename TLabelMap::iterator iter = m_mapLabels.find(uPointIndex);
 	if (iter != m_mapLabels.end())
 	{
 		delete iter->second;
@@ -303,7 +303,7 @@ void CChartSerieBase<T>::AttachCustomLabel(unsigned uPointIndex, CChartLabel<T>*
 template<class T>
 void CChartSerieBase<T>::DrawLabels(CDC* pDC)
 {
-	TLabelMap::iterator iter = m_mapLabels.begin();
+	typename TLabelMap::iterator iter = m_mapLabels.begin();
 	for (iter; iter!=m_mapLabels.end(); iter++)
 	{
 		iter->second->Draw(pDC,iter->first);

@@ -87,7 +87,8 @@ public:
 	**/
 	bool IsPointOnSerie(const CPoint& screenPoint, unsigned& uIndex) const; 
 
-	void CChartSurfaceSerie::SetSeriesOrdering(PointsOrdering );
+	// Override to prevent changing ordering from outside (no-op)
+	virtual void SetSeriesOrdering(PointsOrdering) override;
 private:
 	//! Override in order to avoid changing series ordering.
 //	void SetSeriesOrdering(CChartPointsArray::PointsOrdering);
