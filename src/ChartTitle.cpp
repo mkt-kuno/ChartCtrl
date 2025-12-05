@@ -19,7 +19,7 @@
  *
  */
 
-#include "stdafx.h"
+#include "ChartCtrl_Prefix.h"
 #include "ChartTitle.h"
 #include "ChartCtrl.h"
 #include "Math.h"
@@ -119,7 +119,7 @@ void CChartTitle::Draw(CDC *pDC)
 	size_t TitleCount = m_StringArray.size();
 	for (size_t i=0;i<TitleCount;i++)
 	{
-		map<int, CChartFont>::iterator iter = m_mapLineFonts.find(i);
+		map<int, CChartFont>::iterator iter = m_mapLineFonts.find(static_cast<int>(i));
 		if (iter != m_mapLineFonts.end())
 			iter->second.SelectFont(pDC);
 
@@ -173,7 +173,7 @@ CSize CChartTitle::GetSize(CDC *pDC)
 	m_DefaultFont.SelectFont(pDC);
 	for (size_t i=0;i<TitleCount;i++)
 	{
-		map<int, CChartFont>::iterator iter = m_mapLineFonts.find(i);
+		map<int, CChartFont>::iterator iter = m_mapLineFonts.find(static_cast<int>(i));
 		if (iter != m_mapLineFonts.end())
 			iter->second.SelectFont(pDC);
 

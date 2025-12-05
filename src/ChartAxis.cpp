@@ -18,7 +18,7 @@
  *
  */
 
-#include "stdafx.h"
+#include "ChartCtrl_Prefix.h"
 #include "ChartAxis.h"
 #include "ChartAxisLabel.h"
 #include "ChartGrid.h"
@@ -302,7 +302,7 @@ CSize CChartAxis::GetLargestTick(CDC* pDC)
 	if (m_MaxValue == m_MinValue)
 	{
 		TChartString strLabel = GetTickLabel(m_MinValue);
-		MaxSize = pDC->GetTextExtent(strLabel.c_str(),strLabel.size());
+		MaxSize = pDC->GetTextExtent(strLabel.c_str(), static_cast<int>(strLabel.size()));
 	}
 	else
 	{
@@ -312,7 +312,7 @@ CSize CChartAxis::GetLargestTick(CDC* pDC)
 			if (IsLabelOnAxis(TickValue))
 			{
 				TChartString strLabel = GetTickLabel(TickValue);
-				CSize TextSize = pDC->GetTextExtent(strLabel.c_str(),strLabel.size());
+				CSize TextSize = pDC->GetTextExtent(strLabel.c_str(), static_cast<int>(strLabel.size()));
 				if (TextSize.cy > MaxSize.cy)
 					MaxSize.cy = TextSize.cy;
 				if (TextSize.cx > MaxSize.cx)

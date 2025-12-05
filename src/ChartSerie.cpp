@@ -30,7 +30,7 @@
  *
  */
 
-#include "stdafx.h"
+#include "ChartCtrl_Prefix.h"
 #include "ChartCtrl.h"
 #include "ChartSerie.h"
 #include "ChartAxis.h"

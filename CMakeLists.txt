@@ -46,13 +46,20 @@ if(MSVC)
         /permissive-          # 標準準拠モード
         /Zc:__cplusplus       # __cplusplus マクロを正しく設定
     )
-    
-    # Unicode サポート
-    target_compile_definitions(ChartCtrl PUBLIC
-        UNICODE
-        _UNICODE
-    )
 endif()
+
+# ビルド定義（利用側でオーバーライド可能）
+# PRIVATE: このライブラリのビルド時のみ適用
+# 利用側プロジェクトは独自の定義を使用可能
+target_compile_definitions(ChartCtrl PRIVATE
+    # Windows target version (Windows 7+) - override with higher target if needed
+    $<$<NOT:$<BOOL:$ENV{_WIN32_WINNT}>>:_WIN32_WINNT=0x0601>
+    # Trim Windows headers
+    WIN32_LEAN_AND_MEAN
+    # Unicode support
+    UNICODE
+    _UNICODE
+)
 
 # ライブラリのプロパティ設定
 set_target_properties(ChartCtrl PROPERTIES

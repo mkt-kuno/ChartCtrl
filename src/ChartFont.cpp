@@ -18,7 +18,7 @@
  *
  */
 
-#include "stdafx.h"
+#include "ChartCtrl_Prefix.h"
 #include "ChartFont.h"
 
 CChartFont::CChartFont(const TChartString& strFaceName, int iPointSize)

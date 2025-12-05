@@ -19,7 +19,7 @@
  *
  */
 
-#include "stdafx.h"
+#include "ChartCtrl_Prefix.h"
 #include "ChartScrollBar.h"
 #include "ChartAxis.h"
 #include "ChartCtrl.h"

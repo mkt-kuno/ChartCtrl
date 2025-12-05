@@ -25,7 +25,7 @@
  *
  */
 
-#include "stdafx.h"
+#include "ChartCtrl_Prefix.h"
 #include "ChartLineSerie.h"
 #include "ChartCtrl.h"
 

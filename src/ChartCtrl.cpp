@@ -49,7 +49,7 @@
  *
  */
 
-#include "stdafx.h"
+#include "ChartCtrl_Prefix.h"
 #include "ChartCtrl.h"
 
 #include "ChartSerie.h"
@@ -620,7 +620,7 @@ void CChartCtrl::AttachCustomSerie(CChartSerie* pNewSeries,
 CChartSerie* CChartCtrl::GetSerie(size_t uSerieId) const
 {
 	CChartSerie* pToReturn = NULL;
-	TSeriesMap::const_iterator iter = m_mapSeries.find(uSerieId);
+	TSeriesMap::const_iterator iter = m_mapSeries.find(static_cast<unsigned>(uSerieId));
 	if (iter != m_mapSeries.end())
 	{
 		pToReturn = iter->second;
