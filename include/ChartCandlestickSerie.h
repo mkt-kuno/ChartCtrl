@@ -25,7 +25,7 @@
 //! Point structure used as template parameter for candlestick series
 struct SChartCandlestickPoint
 {
-	SChartCandlestickPoint() { }
+	SChartCandlestickPoint() : XVal(0.0), Low(0.0), High(0.0), Open(0.0), Close(0.0) { }
 	SChartCandlestickPoint(double XValue, double LowVal, 
 		double HighVal, double OpenVal, double CloseVal):
 			XVal(XValue), Low(LowVal), High(HighVal),

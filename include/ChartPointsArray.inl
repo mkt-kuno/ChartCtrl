@@ -23,7 +23,8 @@
 template <class T>
 CChartPointsArray<T>::CChartPointsArray(unsigned iResize) 
   : m_pPoints(NULL), m_iMaxPoints(iResize), m_iCurrentPoints(0),
-    m_iResize(iResize), m_Ordering(poXOrdering)
+    m_iResize(iResize), m_Ordering(poXOrdering),
+    m_dXMinVal(0.0), m_dXMaxVal(0.0), m_dYMinVal(0.0), m_dYMaxVal(0.0)
 {
 	m_pPoints = new T[iResize];
 }
@@ -41,7 +42,7 @@ CChartPointsArray<T>::~CChartPointsArray()
 template <class T>
 void CChartPointsArray<T>::AddPoint(const T& newPoint)
 {
-	if (m_iCurrentPoints == m_iMaxPoints)
+	if (m_iCurrentPoints >= m_iMaxPoints)
 	{
 		m_iMaxPoints += m_iResize;
 		T* pOldPoints = m_pPoints;
@@ -49,6 +50,10 @@ void CChartPointsArray<T>::AddPoint(const T& newPoint)
 		memcpy(m_pPoints,pOldPoints,m_iCurrentPoints*sizeof(T));
 		delete[] pOldPoints;
 	}
+
+	// Safety check for static analysis (C6386)
+	if (m_iCurrentPoints >= m_iMaxPoints || !m_pPoints)
+		return;
 
 	if (m_iCurrentPoints == 0)
 	{

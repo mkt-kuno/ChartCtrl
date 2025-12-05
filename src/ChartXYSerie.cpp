@@ -46,7 +46,7 @@ void CChartXYSerie::AddPoints(double* pX, double* pY, unsigned Count)
 		pPoints[i].Y = pY[i];
 	}
 	CChartSerieBase<SChartXYPoint>::AddPoints(pPoints, Count);
-	delete pPoints;
+	delete[] pPoints;
 }
 
 void CChartXYSerie::SetPoints(double* pX, double* pY, unsigned Count)
@@ -58,7 +58,7 @@ void CChartXYSerie::SetPoints(double* pX, double* pY, unsigned Count)
 		pPoints[i].Y = pY[i];
 	}
 	CChartSerieBase<SChartXYPoint>::SetPoints(pPoints, Count);
-	delete pPoints;
+	delete[] pPoints;
 }
 
 double CChartXYSerie::GetXPointValue(unsigned PointIndex) const

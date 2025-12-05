@@ -1031,6 +1031,8 @@ void CChartCtrl::OnBeginPrinting(CDC *pDC, CPrintInfo *pInfo)
     // fit on a page, so we can in turn determine how many printed
     // pages represent the entire document.
     ASSERT(pDC && pInfo);
+    if (!pDC || !pInfo)
+        return;
 
     // Get a DC for the current window (will be a screen DC for print previewing)
     CDC *pCurrentDC = GetDC();        // will have dimensions of the client area

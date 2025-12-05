@@ -44,6 +44,7 @@ CChartLegend::CChartLegend(CChartCtrl* pParent)
 {
 	m_pParentCtrl = pParent;
 	m_BackColor = RGB(255,255,255);
+	m_ShadowColor = RGB(128,128,128);
 	m_iFontSize = 100;
 	m_strFontName = _T("Times New Roman");
 
